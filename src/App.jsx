@@ -105,7 +105,7 @@ function App() {
           <h2>No Students Added</h2>
         ) : (
           students.map((student) => (
-            <PatientCard
+            <StudentCard
               key={student.id}
               student={student}
               deleteStudent={deleteStudent}

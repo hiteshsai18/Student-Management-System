@@ -1,6 +1,6 @@
 import React from "react";
 
-function PatientCard({ student, deleteStudent }) {
+function StudentCard({ student, deleteStudent }) {
   return (
     <div className="card">
       <h2>{student.name}</h2>
