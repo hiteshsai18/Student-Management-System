@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import StudentCard from "./StudentCard";
+import "./App.css";
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -26,7 +26,9 @@ function App() {
     const courseRegex = /^[A-Za-z ]{2,}$/;
 
     if (!nameRegex.test(formData.name)) {
-      setError("Name must contain only letters and minimum 3 characters");
+      setError(
+        "Name must contain only letters and minimum 3 characters"
+      );
       return;
     }
 
@@ -100,21 +102,39 @@ function App() {
 
       {error && <p className="error">{error}</p>}
 
-      <div className="student-list">
-        {students.length === 0 ? (
-          <h2>No Students Added</h2>
-        ) : (
-          students.map((student) => (
-            <StudentCard
-              key={student.id}
-              student={student}
-              deleteStudent={deleteStudent}
-            />
-          ))
-        )}
-      </div>
+      {students.length === 0 ? (
+        <h2>No Students Added</h2>
+      ) : (
+        <table className="student-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Course</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {students.map((student) => (
+              <tr key={student.id}>
+                <td>{student.name}</td>
+                <td>{student.age}</td>
+                <td>{student.course}</td>
+                <td>
+                  <button
+                    onClick={() => deleteStudent(student.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
 
-export default App
+export default App;
